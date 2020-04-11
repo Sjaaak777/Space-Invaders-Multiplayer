@@ -1,0 +1,30 @@
+{
+  "name": "Space-Invaders-Multiplayer",
+  "version": "1.0.0",
+  "description": "Based on the first Space Invaders single player",
+  "main": "index.js",
+  "scripts": {
+    "client": "parcel src/client/index.html",
+    "server": "nodemon src/server/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sjaaak777/Space-Invaders-Multiplayer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sjaaak777/Space-Invaders-Multiplayer/issues"
+  },
+  "homepage": "https://github.com/Sjaaak777/Space-Invaders-Multiplayer#readme",
+  "dependencies": {
+    "esm": "^3.2.25",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.3",
+    "parcel-bundler": "^1.12.4",
+    "soc": "^0.2.0",
+    "socket.io": "^2.3.0",
+    "socket.io-client": "^2.3.0"
+  }
+}
