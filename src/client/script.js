@@ -47,9 +47,15 @@ document.addEventListener('keyup', (event) => {
 
 socket.emit('new player')
 
-setInterval(() => {
+let lastTime = 0
+
+const gameLoop = (timeStamp) => {
+  let deltaTime = lastTime - timeStamp
+  lastTime = timeStamp
   socket.emit('movement', movement)
-}, 1000 / 60)
+
+  requestAnimationFrame(gameLoop)
+}
 
 socket.on('state', (players) => {
   context.clearRect(0, 0, canvas.width, canvas.height)
@@ -62,3 +68,5 @@ socket.on('state', (players) => {
     context.fill()
   }
 })
+
+gameLoop()
