@@ -2,13 +2,15 @@ import Socket from 'socket.io-client'
 import '../engine/renderer/display'
 
 const socket = Socket('localhost:3000')
-
+const canvas = document.getElementsByTagName('canvas')[0]
+const context = canvas.getContext('2d')
 const movement = {
   up: false,
   down: false,
   left: false,
   right: false,
 }
+
 document.addEventListener('keydown', (event) => {
   switch (event.keyCode) {
     case 65: // A
@@ -48,9 +50,6 @@ socket.emit('new player')
 setInterval(() => {
   socket.emit('movement', movement)
 }, 1000 / 60)
-
-const canvas = document.getElementsByTagName('canvas')[0]
-const context = canvas.getContext('2d')
 
 socket.on('state', (players) => {
   context.clearRect(0, 0, canvas.width, canvas.height)
