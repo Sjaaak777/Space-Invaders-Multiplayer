@@ -1,5 +1,6 @@
 import { Audio } from '../engine/audio/audio'
-import {Scene} from '../engine/scene/scene'
+import { Mouse } from '../engine/input/mouse'
+import { Scene } from '../engine/scene/scene'
 
 class Njin {
   testFunction() {
@@ -7,4 +8,4 @@ class Njin {
   }
 }
 
-export {Audio, Scene}
+export { Audio, Mouse, Scene }
