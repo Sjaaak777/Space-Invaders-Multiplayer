@@ -2,12 +2,16 @@ import * as NJIN from '../engine/njin'
 import Socket from 'socket.io-client'
 import '../engine/renderer/display'
 
-const scene = new NJIN.Scene()
 const audio = new NJIN.Audio()
+new NJIN.Mouse()
+const nj = new NJIN.Njin()
+const scene = new NJIN.Scene()
 
 console.log(scene.createScene())
 console.log(audio.getSound())
 console.log(audio.setVolume(40))
+console.log(nj.testFunction())
+console.log(nj.value)
 
 const socket = Socket('localhost:3000')
 const canvas = document.getElementsByTagName('canvas')[0]
