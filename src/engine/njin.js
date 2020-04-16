@@ -1,4 +1,5 @@
 import { Audio } from '../engine/audio/audio'
+import{Keyboard} from '../engine/input/keyboard'
 import { Mouse } from '../engine/input/mouse'
 import { Scene } from '../engine/scene/scene'
 
@@ -12,4 +13,4 @@ class Njin {
   }
 }
 
-export { Njin, Audio, Mouse, Scene }
+export { Njin, Audio, Keyboard, Mouse, Scene }
