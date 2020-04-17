@@ -1,7 +1,7 @@
-import { Audio } from '../engine/audio/audio'
-import{Keyboard} from '../engine/input/keyboard'
+import { Audio } from './audio/explosion'
+import { Keyboard } from '../engine/input/keyboard'
 import { Mouse } from '../engine/input/mouse'
-import { Scene } from '../engine/scene/scene'
+import { Scene } from './display/scene'
 
 class Njin {
   constructor() {

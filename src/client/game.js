@@ -1,6 +1,8 @@
 import * as NJIN from '../engine/njin'
 import Socket from 'socket.io-client'
-import '../engine/renderer/display'
+
+const scene = new NJIN.Scene()
+const fire = new NJIN.Audio()
 
 export default class Game {
   constructor(gameWidth, gameHeight) {
@@ -10,7 +12,11 @@ export default class Game {
 
   start() {
     //
-    console.log('The game has started!')
+    console.log(scene.createScene())
+      console.log('The game is running.')
+      console.log(fire.explosion)
+      console.log(fire.laser)
+    //   scene.createScene()
   }
 
   draw(ctx) {

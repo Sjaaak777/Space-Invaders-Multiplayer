@@ -1,9 +1,11 @@
-import World from '../engine/renderer/world'
+import World from '../engine/display/world'
+
 import Game from './game'
 
-let world = new World()
-let ctx = world.context
-let game = new Game(world.width, world.height)
+const world = new World(800,600)
+console.log('World Created.')
+const ctx = world.context
+const game = new Game(world.width, world.height)
 
 game.start()
 

@@ -1,10 +1,11 @@
 import * as NJIN from '../engine/njin'
 import Socket from 'socket.io-client'
-// import '../engine/renderer/display'
+import '../engine/display/display'
 
 const audio = new NJIN.Audio()
 new NJIN.Keyboard()
 new NJIN.Mouse()
+// new NJIN.World()
 const nj = new NJIN.Njin()
 const scene = new NJIN.Scene()
 

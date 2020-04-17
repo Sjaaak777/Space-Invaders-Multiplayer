@@ -1,11 +1,13 @@
+import './world.css'
+
 export default class World {
-  constructor() {
+  constructor(width, height) {
     const canvas = document.createElement('canvas')
     const context = canvas.getContext('2d')
 
-    this.width = 800
-      this.height = 600
-      this.context = context
+    this.width = width
+    this.height = height
+    this.context = context
 
     canvas.width = this.width
     canvas.height = this.height
