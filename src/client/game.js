@@ -15,6 +15,8 @@ export default class Game {
 
   start() {
     console.log(scene.createScene())
+    console.log('Communication channel created.')
+    new NJIN.Keyboard(this)
     console.log('The game is running.')
     console.log(fire.explosion)
     console.log(fire.laser)
