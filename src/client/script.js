@@ -5,7 +5,6 @@ import '../engine/display/display'
 const audio = new NJIN.Audio()
 new NJIN.Keyboard()
 new NJIN.Mouse()
-// new NJIN.World()
 const nj = new NJIN.Njin()
 const scene = new NJIN.Scene()
 
@@ -67,6 +66,7 @@ const gameLoop = (timeStamp) => {
   let deltaTime = lastTime - timeStamp
   lastTime = timeStamp
   socket.emit('movement', movement)
+
 
   requestAnimationFrame(gameLoop)
 }

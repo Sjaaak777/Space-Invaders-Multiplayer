@@ -7,7 +7,7 @@ export default class Tank {
     this.name = 'Tank'
     this.gameWidth = game.gameWidth
     this.width = 70
-    this.height = 20
+    this.height = 15
     this.color = '#090'
     this.firePower = firePower
     this.speed = 0

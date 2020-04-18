@@ -4,14 +4,14 @@ export class Audio {
     this.laser = 'Piew'
   }
   getSound() {
-    return 'Make some Noise.'
+    console.log('Make some Noise.')
   }
 
   setStereo() {
-    return 'Stereo Activated.'
+    console.log('Stereo Activated.')
   }
 
   setVolume(volume) {
-    return `Volume set to ${volume} %.`
+    console.log(`Volume set to ${volume} %.`)
   }
 }

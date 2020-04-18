@@ -18,27 +18,34 @@ app.get('/', (reg, res) => {
 })
 
 io.on('connection', (socket) => {
-  console.log(socket.id)
   socket.on('new player', () => {
     players[socket.id] = {
       x: 300,
       y: 300,
+    
     }
+    console.log(`New player: ${socket.id}`)
+    console.log(players)
   })
   socket.on('movement', (data) => {
     let player = players[socket.id] || {}
     if (data.left) {
       player.x -= 5
+      console.log('Server: Moving left.')
     }
     if (data.up) {
       player.y -= 5
+      console.log('Server: Moving up.')
     }
     if (data.right) {
       player.x += 5
+      console.log('Server: Moving right.')
     }
     if (data.down) {
       player.y += 5
+      console.log('Server: Moving down.')
     }
+    console.log(player.x)
   })
 })
 

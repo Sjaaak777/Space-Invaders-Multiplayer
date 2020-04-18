@@ -13,5 +13,6 @@ export default class World {
     canvas.height = this.height
 
     document.body.appendChild(canvas)
+    console.log('World created.')
   }
 }

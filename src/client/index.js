@@ -1,12 +1,11 @@
 import World from '../engine/display/world'
-
 import Game from './game'
 
-const world = new World(800,600)
-console.log('World Created.')
+const world = new World(800, 600)
 const ctx = world.context
 const game = new Game(world.width, world.height)
 
+game.initialization()
 game.start()
 
 let lastTime = 0

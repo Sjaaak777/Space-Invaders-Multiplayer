@@ -1,5 +1,5 @@
 export class Scene {
   createScene() {
-    return 'Scene created.'
+    console.log('Scene created.')
   }
 }

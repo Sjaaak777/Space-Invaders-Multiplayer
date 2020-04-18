@@ -10,7 +10,8 @@ class Njin {
 
 export { Njin }
 export { Audio } from './audio/explosion'
+export { Communicator } from './network/communicator'
 export { Keyboard } from './input/keyboard'
 export { Mouse } from './input/mouse'
-export { Network } from './network/multiplayer'
 export { Scene } from './display/scene'
+

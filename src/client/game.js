@@ -2,22 +2,26 @@ import * as NJIN from '../engine/njin'
 import Socket from 'socket.io-client'
 import Tank from './objects/tank'
 
-const socket = Socket('localhost:3000')
 const fire = new NJIN.Audio()
 const scene = new NJIN.Scene()
-const multiplayer = new NJIN.Network()
 
 export default class Game {
   constructor(gameWidth, gameHeight) {
+    this.socket = Socket('localhost:3000')
     this.gameWidth = gameWidth
     this.gameHeight = gameHeight
   }
 
-  start() {
-    console.log(scene.createScene())
-    console.log('Communication channel created.')
+  initialization() {
+    scene.createScene()
+      this.communicator = new NJIN.Communicator()
+      this.communicator.submitNewPlayer()
     new NJIN.Keyboard(this)
+  }
+
+  start() {
     console.log('The game is running.')
+    fire.setVolume(40)
     console.log(fire.explosion)
     console.log(fire.laser)
     this.tank = new Tank(this)
