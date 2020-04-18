@@ -2,7 +2,7 @@ let firePower = 50
 let speed = 5
 
 export default class Tank {
-  constructor(game) {
+    constructor(game) {
     this.game = game
     this.name = 'Tank'
     this.gameWidth = game.gameWidth
@@ -70,7 +70,7 @@ export default class Tank {
       return
     }
 
-    this.position.x += 1
+      this.position.x += this.speed
 
     if (this.position.x <= 0) {
       this.position.x = 0

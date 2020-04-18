@@ -1,10 +1,11 @@
 import * as NJIN from '../engine/njin'
 import Socket from 'socket.io-client'
-
 import Tank from './objects/tank'
 
-const scene = new NJIN.Scene()
+const socket = Socket('localhost:3000')
 const fire = new NJIN.Audio()
+const scene = new NJIN.Scene()
+const multiplayer = new NJIN.Network()
 
 export default class Game {
   constructor(gameWidth, gameHeight) {

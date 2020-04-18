@@ -1,8 +1,3 @@
-import { Audio } from './audio/explosion'
-import { Keyboard } from '../engine/input/keyboard'
-import { Mouse } from '../engine/input/mouse'
-import { Scene } from './display/scene'
-
 class Njin {
   constructor() {
     this.value = 'from Njin constructor'
@@ -13,4 +8,9 @@ class Njin {
   }
 }
 
-export { Njin, Audio, Keyboard, Mouse, Scene }
+export { Njin }
+export { Audio } from './audio/explosion'
+export { Keyboard } from './input/keyboard'
+export { Mouse } from './input/mouse'
+export { Network } from './network/multiplayer'
+export { Scene } from './display/scene'

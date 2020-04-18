@@ -18,6 +18,7 @@ app.get('/', (reg, res) => {
 })
 
 io.on('connection', (socket) => {
+  console.log(socket.id)
   socket.on('new player', () => {
     players[socket.id] = {
       x: 300,
