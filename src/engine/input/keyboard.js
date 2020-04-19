@@ -1,62 +1,53 @@
 export class Keyboard {
   constructor(game) {
     this.communicator = game.communicator
+    console.log('cm', this.communicator)
     console.log('Keyboard listener created.')
     console.log('kb', game)
-
-    const movement = {
-      up: false,
-      down: false,
-      left: false,
-      right: false,
-    }
 
     document.addEventListener('keydown', (event) => {
       switch (event.keyCode) {
         case 65: // A
-          movement.left = true
-          this.communicator.submitMoveLeft(movement)
+          this.communicator.tankLeft(game.tank.position.x)
           game.tank.moveLeft()
-          console.log(movement, 'Moving Lefto')
           break
         case 87: // W
-          movement.up = true
+          // movement.up = true
           break
         case 68: // D
-          movement.right = true
-          this.communicator.submitMoveRight(movement)
+          this.communicator.tankRight(game.tank.position.x)
           game.tank.moveRight()
           break
         case 83: // S
-          movement.down = true
+          // movement.down = true
           break
       }
-      this.displayKeycode(movement)
+      // this.displayKeycode(movement)
     })
 
     document.addEventListener('keyup', (event) => {
       switch (event.keyCode) {
         case 65: // A
           game.tank.stop()
-          movement.left = false
+          // movement.left = false
           break
         case 87: // W
-          movement.up = false
+          // movement.up = false
           break
         case 68: // D
           game.tank.stop()
-          movement.right = false
+          // movement.right = false
           break
         case 83: // S
-          movement.down = false
+          // movement.down = false
           break
       }
     })
   }
 
-  displayKeycode(movement) {
-    console.log(movement, event)
-  }
+  // displayKeycode(movement) {
+  //   console.log(movement, event)
+  // }
   // Methods
   update(deltaTime) {
     this.gameObjects.forEach((object) => object.update(deltaTime))

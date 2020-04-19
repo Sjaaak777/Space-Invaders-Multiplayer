@@ -1,8 +1,8 @@
 let firePower = 50
-let speed = 5
+let speed = 7
 
 export default class Tank {
-    constructor(game) {
+  constructor(game) {
     this.game = game
     this.name = 'Tank'
     this.gameWidth = game.gameWidth
@@ -18,6 +18,9 @@ export default class Tank {
     this.markedForDeletion = false
   }
 
+  setPosition(data) {
+    this.position.x = data
+  }
   moveLeft() {
     this.game.tank.speed = -speed
   }
@@ -70,7 +73,7 @@ export default class Tank {
       return
     }
 
-      this.position.x += this.speed
+    this.position.x += this.speed
 
     if (this.position.x <= 0) {
       this.position.x = 0

@@ -7,7 +7,7 @@ const server = Http.createServer(app)
 const io = SocketIO(server)
 const port = 3000
 
-const players = {}
+// const players = {}
 
 server.listen(port, () => {
   console.log(`listening on ${port}`)
@@ -17,38 +17,35 @@ app.get('/', (reg, res) => {
   res.sendFile(`${__dirname}/index.html`)
 })
 
+let count = 0
+
 io.on('connection', (socket) => {
   socket.on('new player', () => {
-    players[socket.id] = {
-      x: 300,
-      y: 300,
-    
-    }
+    // players[socket.id]
     console.log(`New player: ${socket.id}`)
-    console.log(players)
-  })
-  socket.on('movement', (data) => {
-    let player = players[socket.id] || {}
-    if (data.left) {
-      player.x -= 5
-      console.log('Server: Moving left.')
-    }
-    if (data.up) {
-      player.y -= 5
-      console.log('Server: Moving up.')
-    }
-    if (data.right) {
-      player.x += 5
-      console.log('Server: Moving right.')
-    }
-    if (data.down) {
-      player.y += 5
-      console.log('Server: Moving down.')
-    }
-    console.log(player.x)
-  })
-})
 
-setInterval(() => {
-  io.sockets.emit('state', players)
-}, 1000 / 60)
+    socket.emit('countUpdated', count)
+  })
+
+  socket.on('tank left', (position) => {
+    io.sockets.emit('tank left', position)
+    // console.log('Server says: the tank moved left', position)
+  })
+
+  socket.on('tank right', (position) => {
+    io.sockets.emit('tank right', position)
+    // console.log('Server says: the tank moved right', position)
+  })
+
+  setInterval(() => {
+    // io.emit('tank left')
+
+    // io.sockets.emit('state', players)
+    count++
+    // io.sockets.emit('looper', 'broem')
+
+    // io.sockets.emit('tank left', 'steering left')
+
+    // console.log('looping from server')
+  }, 1000 / 60)
+})

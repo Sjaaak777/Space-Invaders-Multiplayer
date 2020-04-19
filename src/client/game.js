@@ -14,8 +14,8 @@ export default class Game {
 
   initialization() {
     scene.createScene()
-      this.communicator = new NJIN.Communicator()
-      this.communicator.submitNewPlayer()
+    this.communicator = new NJIN.Communicator(this)
+    this.communicator.submitNewPlayer()
     new NJIN.Keyboard(this)
   }
 
