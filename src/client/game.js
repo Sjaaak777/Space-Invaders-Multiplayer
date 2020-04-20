@@ -16,7 +16,7 @@ export default class Game {
     scene.createScene()
     this.communicator = new NJIN.Communicator(this)
     this.communicator.submitNewPlayer()
-    new NJIN.Keyboard(this)
+    this.keyboard = new NJIN.Keyboard(this)
   }
 
   start() {
@@ -33,6 +33,10 @@ export default class Game {
   }
 
   update(deltaTime) {
+    this.communicator.update(deltaTime)
+    this.keyboard.update(deltaTime)
+    this.tank.update(deltaTime)
+
     this.gameObjects.forEach((object) => object.update(deltaTime))
   }
 }

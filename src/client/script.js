@@ -67,7 +67,6 @@ const gameLoop = (timeStamp) => {
   lastTime = timeStamp
   socket.emit('movement', movement)
 
-
   requestAnimationFrame(gameLoop)
 }
 

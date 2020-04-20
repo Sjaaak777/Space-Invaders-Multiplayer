@@ -18,9 +18,15 @@ export default class Tank {
     this.markedForDeletion = false
   }
 
-  setPosition(data) {
-    this.position.x = data
+  getPosition() {
+    return this.position.x
   }
+
+  setPosition(position) {
+    console.log('from tankie', position)
+    this.game.tank.position.x = position
+  }
+
   moveLeft() {
     this.game.tank.speed = -speed
   }
@@ -69,10 +75,6 @@ export default class Tank {
   }
 
   update(deltaTime) {
-    if (!deltaTime) {
-      return
-    }
-
     this.position.x += this.speed
 
     if (this.position.x <= 0) {
