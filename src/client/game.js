@@ -17,6 +17,7 @@ export default class Game {
     this.communicator = new NJIN.Communicator(this)
     this.communicator.submitNewPlayer()
     this.keyboard = new NJIN.Keyboard(this)
+    this.storage = new NJIN.PlayerStorage(this)
   }
 
   start() {

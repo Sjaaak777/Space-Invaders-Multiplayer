@@ -18,17 +18,26 @@ app.get('/', (reg, res) => {
 let count = 0
 
 io.on('connection', (socket) => {
-  // RECEIVE
+
+
+  //- If new player connects
+
+  //  -- store new player
+
+  //  -- send 'new player connected' to all other players
+
   socket.on('new player', () => {
     // players[socket.id]
     console.log(`New player: ${socket.id}`)
+    io.emit('store player', socket.id)
 
-    socket.emit('countUpdated', count)
+    // socket.emit('countUpdated', count)
   })
 
   socket.on('tank position', (position) => {
-    io.sockets.emit('tank position', position)
-    console.log(position)
+    io.emit('tank position', position)
+    // console.log(position)
+    
   })
 
   setInterval(() => {

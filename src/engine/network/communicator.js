@@ -16,6 +16,11 @@ export class Communicator {
 
     this.socket.on('countUpdated', (data) => {})
 
+    this.socket.on('store player', (data) => {
+      this.game.storage.addPlayer(this.socket.id)
+      this.game.storage.listPlayers()
+    })
+
     this.socket.on('looper', (data) => {
       console.log(data)
     })

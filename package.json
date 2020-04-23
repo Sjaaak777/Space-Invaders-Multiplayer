@@ -4,6 +4,7 @@
   "description": "Based on the first Space Invaders single player",
   "main": "index.js",
   "scripts": {
+    "build":"parcel build src/client/index.html",
     "client": "parcel src/client/index.html",
     "server": "nodemon src/server/main.js"
   },

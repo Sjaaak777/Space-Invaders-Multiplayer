@@ -14,4 +14,5 @@ export { Communicator } from './network/communicator'
 export { Keyboard } from './input/keyboard'
 export { Mouse } from './input/mouse'
 export { Scene } from './display/scene'
+export { PlayerStorage } from './storage/player-storage'
 
