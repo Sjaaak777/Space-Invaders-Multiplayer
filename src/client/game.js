@@ -17,14 +17,14 @@ export default class Game {
     this.communicator = new NJIN.Communicator(this)
     this.communicator.submitNewPlayer()
     this.keyboard = new NJIN.Keyboard(this)
-    this.storage = new NJIN.PlayerStorage(this)
+    this.mouse = new NJIN.Mouse(this)
   }
 
   start() {
     console.log('The game is running.')
-    fire.setVolume(40)
-    console.log(fire.explosion)
-    console.log(fire.laser)
+    // fire.setVolume(40)  // Test msg
+    // console.log(fire.explosion) // Test msg
+    // console.log(fire.laser) // Test msg
     this.tank = new Tank(this)
     this.gameObjects = [this.tank]
   }

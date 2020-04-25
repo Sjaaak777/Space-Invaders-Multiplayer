@@ -2,14 +2,12 @@ export class Keyboard {
   constructor(game) {
     this.game = game
     this.communicator = game.communicator
-    console.log('cm', this.communicator)
-    console.log('Keyboard listener created.')
-    console.log('kb', game)
 
     document.addEventListener('keydown', (event) => {
       switch (event.keyCode) {
         case 65: // A
           game.tank.moveLeft()
+          this.communicator.incrementScore()
           break
         case 87: // W
           // movement.up = true

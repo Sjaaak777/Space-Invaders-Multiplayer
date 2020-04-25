@@ -1,11 +1,14 @@
 import Express from 'express'
 import Http from 'http'
 import SocketIO from 'socket.io'
+import Players from './storage/players'
 
 const app = Express()
 const server = Http.createServer(app)
 const io = SocketIO(server)
 const port = 3000
+
+const players = new Players()
 
 server.listen(port, () => {
   console.log(`listening on ${port}`)
@@ -18,37 +21,44 @@ app.get('/', (reg, res) => {
 let count = 0
 
 io.on('connection', (socket) => {
+  players.addPlayer(socket.id)
+
+  socket.broadcast.emit('message', `User: ${socket.id} connected.`)
+
+  socket.emit('countUpdated', count)
 
 
-  //- If new player connects
+  socket.on('updateScore', (id) => {
+    players.updateScore(id)
+    console.log('id', id)
+  })
 
-  //  -- store new player
+  socket.on('increment', () => {
+    count++
+    console.log('Server Bijteller:', count)
+    io.emit('countUpdated', count)
+  })
 
-  //  -- send 'new player connected' to all other players
+  socket.on('clear players', () => {
+    players.clearPlayersList()
+  })
 
   socket.on('new player', () => {
-    // players[socket.id]
     console.log(`New player: ${socket.id}`)
-    io.emit('store player', socket.id)
-
-    // socket.emit('countUpdated', count)
+    io.emit('savePlayer', socket.id)
   })
 
   socket.on('tank position', (position) => {
     io.emit('tank position', position)
-    // console.log(position)
-    
   })
 
-  setInterval(() => {
-    io.sockets.emit('state', 'status')
+  setInterval(() => {}, 1000 / 60)
 
-    // io.sockets.emit('state', players)
-    count++
-    // io.sockets.emit('looper', 'broem')
-
-    // io.sockets.emit('tank left', 'steering left')
-
-    // console.log('looping from server')
-  }, 1000 / 60)
+  socket.on('disconnect', () => {
+    io.emit('message', `User: ${socket.id} left.`)
+    console.log(`${socket.id} left.`)
+    players.removePlayer(socket.id)
+    // players.clearPlayersList()
+    players.listPlayers()
+  })
 })
