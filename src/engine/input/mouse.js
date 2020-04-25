@@ -2,18 +2,11 @@ export class Mouse {
   constructor(game) {
     this.game = game
 
-
     document.addEventListener('click', (event) => {
-      // this.displayMsg()
       this.incrementCounter()
-      // console.log('Geklikt')
-
+      this.game.communicator.listPlayers()
     })
     this.clickCounter = 0
-
-
-
-
   }
 
   displayMsg() {

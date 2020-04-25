@@ -22,15 +22,20 @@ let count = 0
 
 io.on('connection', (socket) => {
   players.addPlayer(socket.id)
+  players.listPlayers()
 
-  socket.broadcast.emit('message', `User: ${socket.id} connected.`)
+  io.emit('message', `User: ${socket.id} connected.`)
 
   socket.emit('countUpdated', count)
 
-
   socket.on('updateScore', (id) => {
     players.updateScore(id)
-    console.log('id', id)
+    // console.log('id', id)
+  })
+
+  socket.on('removePlayer', (id) => {
+    players.removePlayer(id)
+    // players.listPlayers()
   })
 
   socket.on('increment', () => {
@@ -43,9 +48,14 @@ io.on('connection', (socket) => {
     players.clearPlayersList()
   })
 
+  socket.on('listPlayers', () => {
+    players.listPlayers()
+  })
+
   socket.on('new player', () => {
     console.log(`New player: ${socket.id}`)
-    io.emit('savePlayer', socket.id)
+    // io.emit('savePlayer', socket.id)
+    // players.listPlayers()
   })
 
   socket.on('tank position', (position) => {

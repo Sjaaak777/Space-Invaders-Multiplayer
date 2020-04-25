@@ -15,7 +15,7 @@ export default class Game {
   initialization() {
     scene.createScene()
     this.communicator = new NJIN.Communicator(this)
-    this.communicator.submitNewPlayer()
+    // this.communicator.submitNewPlayer()
     this.keyboard = new NJIN.Keyboard(this)
     this.mouse = new NJIN.Mouse(this)
   }

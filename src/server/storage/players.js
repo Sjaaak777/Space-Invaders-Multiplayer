@@ -7,11 +7,13 @@ export default class Players {
   }
 
   addPlayer(playerId) {
+    console.log('player to be added', playerId)
     players.push({ id: playerId, score: this.score })
   }
 
   removePlayer(playerId) {
-    const filteredPlayers = players.filter((item) => item !== playerId)
+    players = players.filter((object) => object.id !== playerId)
+    // this.listPlayers()
   }
 
   getPlayer(playerId) {
@@ -21,18 +23,20 @@ export default class Players {
   }
 
   listPlayers() {
-    console.log(players)
+    console.log('van listplayers',players)
     return players
   }
 
   clearPlayersList() {
     players = []
+  }
+
+  updateScore(playerId) {
+    let player = this.getPlayer(playerId)
+    if (player) {
+      player.score = this.score + 10
     }
-    
-    updateScore(playerId) {
-        let player = this.getPlayer(playerId)
-        player.score = 10
-        this.listPlayers()
-        
-    }
+
+    // this.listPlayers()
+  }
 }

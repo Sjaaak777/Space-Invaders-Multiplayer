@@ -14,6 +14,8 @@ export class Keyboard {
           break
         case 68: // D
           game.tank.moveRight()
+          // this.communicator.removePlayer()
+          // this.communicator.
           break
         case 83: // S
           // movement.down = true
