@@ -30,12 +30,10 @@ io.on('connection', (socket) => {
 
   socket.on('updateScore', (id) => {
     players.updateScore(id)
-    // console.log('id', id)
   })
 
   socket.on('removePlayer', (id) => {
     players.removePlayer(id)
-    // players.listPlayers()
   })
 
   socket.on('increment', () => {
@@ -54,21 +52,19 @@ io.on('connection', (socket) => {
 
   socket.on('new player', () => {
     console.log(`New player: ${socket.id}`)
-    // io.emit('savePlayer', socket.id)
-    // players.listPlayers()
   })
 
   socket.on('tank position', (position) => {
     io.emit('tank position', position)
   })
 
-  setInterval(() => {}, 1000 / 60)
-
   socket.on('disconnect', () => {
-    io.emit('message', `User: ${socket.id} left.`)
-    console.log(`${socket.id} left.`)
     players.removePlayer(socket.id)
-    // players.clearPlayersList()
+    io.emit('message', `User: ${socket.id} left.`)
+
+    console.log(`${socket.id} left.`)
     players.listPlayers()
   })
+
+  setInterval(() => {}, 1000 / 60)
 })

@@ -7,13 +7,12 @@ export default class Players {
   }
 
   addPlayer(playerId) {
-    console.log('player to be added', playerId)
+    // console.log('player to be added', playerId)
     players.push({ id: playerId, score: this.score })
   }
 
   removePlayer(playerId) {
     players = players.filter((object) => object.id !== playerId)
-    // this.listPlayers()
   }
 
   getPlayer(playerId) {
@@ -24,7 +23,7 @@ export default class Players {
 
   listPlayers() {
     console.log('van listplayers',players)
-    return players
+    // return players
   }
 
   clearPlayersList() {
