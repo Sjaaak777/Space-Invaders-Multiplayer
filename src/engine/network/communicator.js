@@ -18,16 +18,6 @@ export class Communicator {
     this.socket.on('message', (msg) => {
       console.log(msg)
     })
-
-    this.socket.on('countUpdated', (count) => {
-      console.log('The count has been updated:', count)
-    })
-
-    // this.socket.on('savePlayer', (data) => {})
-
-    this.socket.on('looper', (data) => {
-      console.log(data)
-    })
   }
 
   incrementCounter() {
@@ -36,10 +26,6 @@ export class Communicator {
 
   incrementScore() {
     this.socket.emit('updateScore', this.socket.id)
-  }
-
-  submitNewPlayer() {
-    this.socket.emit('new player')
   }
 
   removePlayer() {
@@ -55,7 +41,9 @@ export class Communicator {
   }
 
   update(deltaTime) {
-    this.tp = this.game.tank.getPosition()
+    if (this.game.tank) {
+      this.tp = this.game.tank.getPosition()
+    }
 
     this.tankPosition()
   }

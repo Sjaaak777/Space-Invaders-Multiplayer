@@ -2,8 +2,9 @@ let firePower = 50
 let speed = 7
 
 export default class Tank {
-  constructor(game) {
+  constructor(game, id) {
     this.game = game
+    this.id = id
     this.name = 'Tank'
     this.gameWidth = game.gameWidth
     this.width = 70
@@ -16,6 +17,10 @@ export default class Tank {
       y: game.gameHeight - this.height - 1,
     }
     this.markedForDeletion = false
+  }
+
+  spawnTank(id) {
+    console.log('tankId', id)
   }
 
   getPosition() {

@@ -7,7 +7,6 @@ export default class Players {
   }
 
   addPlayer(playerId) {
-    // console.log('player to be added', playerId)
     players.push({ id: playerId, score: this.score })
   }
 
@@ -22,8 +21,7 @@ export default class Players {
   }
 
   listPlayers() {
-    console.log('van listplayers',players)
-    // return players
+    console.log('van listplayers', players)
   }
 
   clearPlayersList() {
@@ -35,7 +33,5 @@ export default class Players {
     if (player) {
       player.score = this.score + 10
     }
-
-    // this.listPlayers()
   }
 }
