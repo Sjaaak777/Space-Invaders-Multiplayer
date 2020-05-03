@@ -9,7 +9,6 @@ const movement = {
 
 export class Communicator {
   constructor(game) {
-    this.tp = 0
     this.game = game
     this.socket = Socket('localhost:3000')
 
@@ -18,33 +17,51 @@ export class Communicator {
     this.socket.on('message', (msg) => {
       console.log(msg)
     })
+
+    // ### STEP 2 ###
+    this.socket.on('getSocketId', (socketId) => {
+      this.game.spawn(socketId)
+      console.log(`Comm: ${socketId}`)
+    })
+
+    this.socket.on('sendTankArray', (tankArray) => {
+      this.game.addReceivedObjectsToObjectsArray(tankArray)
+    })
+
+    this.socket.on('sendAllTanks', (all) => {
+      console.log('comm: sendAllTanks', all)
+      all.forEach((tnk) => {
+        this.game.boem(tnk)
+        console.log('tankie spawned')
+      })
+      console.log(this.game.gameObjects)
+    })
+
+    setInterval(() => {
+      console.log('com: interval')
+      // this.getAllTanksFromTanksArray()
+    }, 1000 / 0.1)
   }
 
-  incrementCounter() {
-    this.socket.emit('increment')
+  // ### STEP 5 ###
+  addTankToTankArray(tank) {
+    tank.color = '#990'
+    this.socket.emit('addTankToArray', tank)
+    console.log('comm:', tank)
+
+    this.getAllTanksFromTanksArray()
   }
 
-  incrementScore() {
-    this.socket.emit('updateScore', this.socket.id)
+  getAllTanksFromTanksArray() {
+    console.log('comm: getting all tanks')
+    let allTanks = this.socket.emit('getAllTanks')
+
+    console.log('comm: getAllTanksFromTanksArray()', allTanks)
   }
 
-  removePlayer() {
-    this.socket.emit('removePlayer', this.socket.id)
-  }
-
-  listPlayers() {
-    this.socket.emit('listPlayers')
-  }
-
-  tankPosition() {
-    this.socket.emit('tank position', this.tp)
-  }
+  listPlayers() {}
 
   update(deltaTime) {
-    if (this.game.tank) {
-      this.tp = this.game.tank.getPosition()
-    }
-
-    this.tankPosition()
+    // console.log(this.game)
   }
 }

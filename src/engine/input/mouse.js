@@ -3,7 +3,7 @@ export class Mouse {
     this.game = game
 
     document.addEventListener('click', (event) => {
-      this.incrementCounter()
+      // this.incrementCounter()
       this.game.communicator.listPlayers()
     })
     this.clickCounter = 0

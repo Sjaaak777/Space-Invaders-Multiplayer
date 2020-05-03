@@ -21,7 +21,7 @@ export default class Players {
   }
 
   listPlayers() {
-    console.log('van listplayers', players)
+    console.log('Players:', players)
   }
 
   clearPlayersList() {

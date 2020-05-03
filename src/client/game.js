@@ -11,6 +11,7 @@ export default class Game {
   }
 
   initialization() {
+    this.gameObjects = []
     scene.createScene()
     // Create connection to localhost:3000 via communicator class.
     this.communicator = new NJIN.Communicator(this)
@@ -24,24 +25,37 @@ export default class Game {
     // fire.setVolume(40)  // Test msg
     // console.log(fire.explosion) // Test msg
     // console.log(fire.laser) // Test msg
-    // this.tank = new Tank(this)
-    let tt = Tank
-    console.log(Tank)
-    this.gameObjects = []
+  }
+  // ### STEP 3 ###
+  spawn(socketId) {
+    this.tank = new Tank(socketId)
+
+    // console.log('A new tank', socketId)
+    console.log('game:', this.tank)
+
+    // ### STEP 4 ###
+    this.communicator.addTankToTankArray(this.tank)
   }
 
-  spawn(newTank) {
-    this.tank = new Tank(newTank)
+  boem(tnk) {
+    this.tank = new Tank(tnk.id, tnk.color)
+    this.gameObjects.push(this.tank)
+    console.log('game: boem()', this.gameObjects)
+  }
 
-    console.log('new tank', newTank)
+  addReceivedObjectsToObjectsArray(receivedArray) {
+    console.log('game:', this.gameObjects)
+    this.gameObjects = receivedArray
+    receivedArray.forEach((object) => {})
+    console.log('game:', receivedArray)
+  }
 
-    // this.gameObjects.push(this.tank)
-    console.log(this.tnk)
+  getAllTanksFromTanksArray() {
+    this.communicator.getAllTanksFromTanksArray()
   }
 
   draw(ctx) {
     this.gameObjects.forEach((object) => object.draw(ctx))
-    // console.log('from draw',this.gameObjects)
   }
 
   update(deltaTime) {
@@ -50,6 +64,5 @@ export default class Game {
     // this.tank.update(deltaTime)
 
     this.gameObjects.forEach((object) => object.update(deltaTime))
-    // console.log(this.gameObjects)
   }
 }

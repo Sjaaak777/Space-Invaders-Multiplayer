@@ -7,7 +7,7 @@ export class Keyboard {
       switch (event.keyCode) {
         case 65: // A
           game.tank.moveLeft()
-          this.communicator.incrementScore()
+          // this.communicator.incrementScore()
           break
         case 87: // W
           // movement.up = true

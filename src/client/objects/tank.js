@@ -1,23 +1,29 @@
+let width = 800
+let height = 600
+
 let firePower = 50
 let speed = 7
 
 export default class Tank {
-  constructor(game, id) {
-    this.game = game
+  constructor( id, color) {
+
     this.id = id
     this.name = 'Tank'
-    this.gameWidth = game.gameWidth
+    this.gameWidth = width
+    this.gameHeight = height
     this.width = 70
     this.height = 15
-    this.color = '#090'
+    this.color = color
     this.firePower = firePower
     this.speed = 0
     this.position = {
-      x: game.gameWidth / 2 - this.width / 2,
-      y: game.gameHeight - this.height - 1,
+      x: this.gameWidth / 2 - this.width / 2,
+      y: this.gameHeight - this.height - 1,
     }
     this.markedForDeletion = false
   }
+
+
 
   spawnTank(id) {
     console.log('tankId', id)
@@ -33,7 +39,7 @@ export default class Tank {
   }
 
   moveLeft() {
-    this.game.tank.speed = -speed
+    this.speed = -speed
   }
   moveRight() {
     this.speed = +speed

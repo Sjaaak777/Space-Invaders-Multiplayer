@@ -7,3 +7,11 @@ The idea for this is to be more flexible to create an own engine library for fut
 - Client
 - Engine
 - Server
+
+> Layout of the setup.
+
+![](images/setup.png)
+
+> Communication flow.
+
+![](images/communication.png)
