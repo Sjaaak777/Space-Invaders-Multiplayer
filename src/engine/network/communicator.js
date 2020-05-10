@@ -21,25 +21,42 @@ export class Communicator {
     // ### STEP 2 ###
     this.socket.on('getSocketId', (socketId) => {
       this.game.spawn(socketId)
-      console.log(`Comm: ${socketId}`)
     })
 
-    this.socket.on('sendTankArray', (tankArray) => {
-      this.game.addReceivedObjectsToObjectsArray(tankArray)
-    })
+    this.socket.on('sendTankArray', (tankArray) => {})
 
-    this.socket.on('sendAllTanks', (all) => {
-      console.log('comm: sendAllTanks', all)
-      all.forEach((tnk) => {
-        this.game.boem(tnk)
-        console.log('tankie spawned')
+    this.socket.on('sendAllTanks', (storageTanksArray) => {
+      storageTanksArray.forEach((tanksArrayObject) => {
+        let tanksObjectId = tanksArrayObject.id
+        let gameObjectsArray = this.game.gameObjects
+        let tankToAdd = gameObjectsArray.find((obj) => obj.id == tanksObjectId)
+        if (typeof tankToAdd === 'undefined') {
+          this.game.boem(tanksArrayObject)
+          console.log('tta is undefined', tanksObjectId, 'will be added.')
+        } else {
+          console.log(tanksObjectId, 'is present')
+        }
       })
-      console.log(this.game.gameObjects)
+    })
+
+    this.socket.on('updateAllTanks', (all) => {
+      let go = this.game.gameObjects
+
+      go.forEach((obj) => {
+        all.forEach((element) => {
+          if (element.id == obj.id) {
+            obj.markedForDeletion = element.markedForDeletion
+          }
+        })
+      })
+
+      go = all.filter((obj) => !obj.id)
     })
 
     setInterval(() => {
-      console.log('com: interval')
-      // this.getAllTanksFromTanksArray()
+      let go = this.game.gameObjects
+
+      go.forEach((tnk) => {})
     }, 1000 / 0.1)
   }
 
@@ -47,21 +64,15 @@ export class Communicator {
   addTankToTankArray(tank) {
     tank.color = '#990'
     this.socket.emit('addTankToArray', tank)
-    console.log('comm:', tank)
 
     this.getAllTanksFromTanksArray()
   }
 
   getAllTanksFromTanksArray() {
-    console.log('comm: getting all tanks')
     let allTanks = this.socket.emit('getAllTanks')
-
-    console.log('comm: getAllTanksFromTanksArray()', allTanks)
   }
 
   listPlayers() {}
 
-  update(deltaTime) {
-    // console.log(this.game)
-  }
+  update(deltaTime) {}
 }

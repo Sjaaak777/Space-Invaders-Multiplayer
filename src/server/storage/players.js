@@ -21,7 +21,7 @@ export default class Players {
   }
 
   listPlayers() {
-    console.log('Players:', players)
+    // console.log('Players:', players)
   }
 
   clearPlayersList() {
